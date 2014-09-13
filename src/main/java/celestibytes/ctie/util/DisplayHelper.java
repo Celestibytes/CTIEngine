@@ -14,18 +14,30 @@
 
 package celestibytes.ctie.util;
 
+import celestibytes.ctie.core.Game;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
 /**
- * An {@link Class} that contains game initialization utilities.
+ * Handles and initializes the game {@link Display}.
+ * <p/>
+ * When a new {@link Display} is created,
+ * {@link DisplayHelper#initGL(String, int, int)} should be called.
+ * <p/>
+ * When the {@link Display} is closed, {@link DisplayHelper#destroyGL()} should
+ * be called.
+ * <p/>
+ * When the {@link Display} is resized, {@link DisplayHelper#onResize()} should
+ * be called.
  * 
  * @author PizzAna
- *
+ * @see Display
+ * @see Game
  */
-public class InitializationHelper
+public class DisplayHelper
 {
     /**
      * Tells if the initialization has already run.
@@ -87,7 +99,7 @@ public class InitializationHelper
     }
     
     /**
-     * Called when the {@link Display} is resized. (right?)
+     * Called when the {@link Display} is resized.
      */
     public static void onResize()
     {
@@ -95,9 +107,9 @@ public class InitializationHelper
     }
     
     /**
-     * Gives the windowWidth of the {@link InitializationHelper}.
+     * Gives the {@code windowWidth}.
      * 
-     * @return the windowWidth.
+     * @return the {@code windowWidth}.
      */
     public static int getWindowWidth()
     {
@@ -105,9 +117,20 @@ public class InitializationHelper
     }
     
     /**
-     * Gives the windowHeight of the {@link InitializationHelper}.
+     * Sets the {@code windowWidth} to the given value.
      * 
-     * @return the windowHeight.
+     * @param windowWidth
+     *            the value to set
+     */
+    public static void setWindowWidth(int windowWidth)
+    {
+        DisplayHelper.windowWidth = windowWidth;
+    }
+    
+    /**
+     * Gives the {@code windowHeight}.
+     * 
+     * @return the {@code windowHeight}.
      */
     public static int getWindowHeight()
     {
@@ -115,20 +138,13 @@ public class InitializationHelper
     }
     
     /**
-     * @param windowWidth
-     *            the windowWidth to set
-     */
-    public static void setWindowWidth(int windowWidth)
-    {
-        InitializationHelper.windowWidth = windowWidth;
-    }
-    
-    /**
+     * Sets the {@code windowHeight} to the given value.
+     * 
      * @param windowHeight
-     *            the windowHeight to set
+     *            the value to set
      */
     public static void setWindowHeight(int windowHeight)
     {
-        InitializationHelper.windowHeight = windowHeight;
+        DisplayHelper.windowHeight = windowHeight;
     }
 }

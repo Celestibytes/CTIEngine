@@ -1,0 +1,18 @@
+#Organize Import Order
+#Sat Sep 13 10:10:30 EEST 2014
+9=net.minecraftforge
+8=net.minecraft
+7=pizzana
+15=javax
+6=celestibytes
+14=java
+5=celestibytes.pizzana
+13=org
+4=celestibytes.core
+12=net
+3=okkapel.kkplglutil
+11=com
+2=okkapel.ogljguisystem
+10=cpw.mods.fml
+1=celestibytes.lib
+0=celestibytes.ctie

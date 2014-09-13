@@ -15,7 +15,7 @@
 package celestibytes.ctie.core;
 
 import celestibytes.ctie.util.GLData;
-import celestibytes.ctie.util.InitializationHelper;
+import celestibytes.ctie.util.DisplayHelper;
 
 import okkapel.ogljguisystem.GuiManager;
 import okkapel.ogljguisystem.util.MouseHelper;
@@ -42,6 +42,11 @@ public abstract class Game
      * The {@link GuiManager} of the game.
      */
     public static GuiManager guiManager = null;
+    
+    /**
+     * The main output logger of the game.
+     */
+    public static Logger out;
     
     /**
      * The delta value.
@@ -72,11 +77,6 @@ public abstract class Game
      * The window height.
      */
     private static int windowHeight;
-    
-    /**
-     * The main output logger of the game.
-     */
-    public Logger out;
     
     /**
      * The instance of {@link Random} for the game to use.
@@ -133,7 +133,7 @@ public abstract class Game
         {
             if (Display.wasResized())
             {
-                InitializationHelper.onResize();
+                DisplayHelper.onResize();
             }
             
             calculateDelta();
@@ -164,7 +164,7 @@ public abstract class Game
         }
         
         GLData.unloadAll();
-        InitializationHelper.destroyGL();
+        DisplayHelper.destroyGL();
     }
     
     /**
@@ -174,7 +174,7 @@ public abstract class Game
     {
         try
         {
-            InitializationHelper.initGL(name, windowWidth, windowHeight);
+            DisplayHelper.initGL(name, windowWidth, windowHeight);
             GLData.loadTextures();
             GuiManager.init(GLData.textureGuiDecor, windowWidth, windowHeight);
             guiManager = new GuiManager();
@@ -225,81 +225,85 @@ public abstract class Game
     }
     
     /**
-     * Gives the delta of the {@link Game}.
+     * Gives the {@code delta}.
      * 
-     * @return the delta.
+     * @return the {@code delta}.
      */
     public static float getDelta()
     {
         return delta;
     }
-    
+
     /**
-     * Gives the fpsLimit of the {@link Game}.
+     * Sets the {@code delta} to the given value.
      * 
-     * @return the fpsLimit.
-     */
-    public static int getFpsLimit()
-    {
-        return fpsLimit;
-    }
-    
-    /**
-     * @param delta
-     *            the delta to set
+     * @param delta the value to set
      */
     public static void setDelta(float delta)
     {
         Game.delta = delta;
     }
-    
+
     /**
-     * @param fpsLimit
-     *            the fpsLimit to set
+     * Gives the {@code fpsLimit}.
+     * 
+     * @return the {@code fpsLimit}.
+     */
+    public static int getFpsLimit()
+    {
+        return fpsLimit;
+    }
+
+    /**
+     * Sets the {@code fpsLimit} to the given value.
+     * 
+     * @param fpsLimit the value to set
      */
     public static void setFpsLimit(int fpsLimit)
     {
         Game.fpsLimit = fpsLimit;
     }
-    
+
     /**
-     * Gives the windowWidth of the {@link Game}.
+     * Gives the {@code windowWidth}.
      * 
-     * @return the windowWidth.
+     * @return the {@code windowWidth}.
      */
     public static int getWindowWidth()
     {
         return windowWidth;
     }
-    
+
     /**
-     * Gives the windowHeight of the {@link Game}.
+     * Sets the {@code windowWidth} to the given value.
      * 
-     * @return the windowHeight.
-     */
-    public static int getWindowHeight()
-    {
-        return windowHeight;
-    }
-    
-    /**
-     * @param windowWidth
-     *            the windowWidth to set
+     * @param windowWidth the value to set
      */
     public static void setWindowWidth(int windowWidth)
     {
         Game.windowWidth = windowWidth;
     }
-    
+
     /**
-     * @param windowHeight
-     *            the windowHeight to set
+     * Gives the {@code windowHeight}.
+     * 
+     * @return the {@code windowHeight}.
+     */
+    public static int getWindowHeight()
+    {
+        return windowHeight;
+    }
+
+    /**
+     * Sets the {@code windowHeight} to the given value.
+     * 
+     * @param windowHeight the value to set
      */
     public static void setWindowHeight(int windowHeight)
     {
         Game.windowHeight = windowHeight;
     }
-    
+
     /**
      * Loads the game textures, configurations and etc.
      */

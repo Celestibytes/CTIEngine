@@ -14,17 +14,20 @@
 
 package celestibytes.ctie.util;
 
+import celestibytes.ctie.core.Game;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
 
 /**
- * An {@link Object} that loads textures.
+ * Loads texture files.
  * 
  * @author PizzAna
  *
@@ -35,44 +38,59 @@ public class TextureLoader
      * Loads a texture.
      * 
      * @param filename
-     *            the name of the texture file.
-     * @return the texture id.
+     *            the relative path of the texture file.
+     * @return the texture id or {@code -1} if the texture failed to load.
      */
     public static int loadTexture(String filename)
     {
         try
         {
-            BufferedImage img = ImageIO.read(new File(filename));
+            // The image
+            BufferedImage image = ImageIO.read(new File(filename));
             
-            // Array for image pixel data
-            int[] pixels = new int[img.getWidth() * img.getHeight() * 4];
+            // The image pixel data
+            int[] pixels = new int[image.getWidth() * image.getHeight() * 4];
             
-            // Write pixel data to the array
-            img.getRGB(0, 0, img.getWidth(), img.getHeight(), pixels, 0, img.getWidth());
+            // Write the pixel data into the array
+            image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
             
-            // Byte buffer for pixel data
-            ByteBuffer pixs = BufferUtils.createByteBuffer(img.getWidth() * img.getHeight() * 4);
+            // Create a byte buffer for pixel data
+            ByteBuffer pixelBuffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4);
             
             // Put pixel data into the buffer
-            for (int y = 0; y < img.getHeight(); y++)
+            for (int i = 0; i < image.getWidth(); i++)
             {
-                for (int x = 0; x < img.getWidth(); x++)
+                for (int j = 0; j < image.getHeight(); j++)
                 {
-                    int pixl = pixels[y * img.getWidth() + x];
-                    pixs.put((byte) ((pixl >> 16) & 255)); // Red
-                    pixs.put((byte) ((pixl >> 8) & 255)); // Green
-                    pixs.put((byte) ((pixl) & 255)); // Blue
-                    pixs.put((byte) ((pixl >> 24) & 255)); // Alpha
+                    // Get the pixel from the array
+                    int pixel = pixels[i * image.getWidth() * j];
+                    
+                    // Red
+                    pixelBuffer.put((byte) ((pixel >> 16) & 255));
+                    
+                    // Green
+                    pixelBuffer.put((byte) ((pixel >> 8) & 255));
+                    
+                    // Blue
+                    pixelBuffer.put((byte) ((pixel) & 255));
+                    
+                    // Alpha
+                    pixelBuffer.put((byte) ((pixel >> 24) & 255));
                 }
             }
             
-            // Required
-            pixs.flip();
-            int texId = GL11.glGenTextures();
-            GL11.glBindTexture(GL11.GL_TEXTURE_2D, texId);
-            System.out.println(texId);
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, img.getWidth(), img.getHeight(), 0, GL11.GL_RGBA,
-                    GL11.GL_UNSIGNED_BYTE, pixs);
+            pixelBuffer.flip();
+            
+            int id = GL11.glGenTextures();
+            
+            GL11.glBindTexture(GL11.GL_TEXTURE_2D, id);
+            
+            // TODO Remove logging through System
+            System.out.println(id);
+            Game.out.debug(id);
+            
+            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, image.getWidth(), image.getHeight(), 0,
+                    GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixelBuffer);
             
             // Apparently I forgot these
             // GL11.glTexParameteri(GL11.GL_TEXTURE_2D,
@@ -85,14 +103,16 @@ public class TextureLoader
             
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
             
-            return texId;
+            return id;
         }
-        catch (Exception e)
+        catch (IOException e)
         {
             e.printStackTrace();
         }
         
-        System.err.println("Texture loading failed!");
+        // TODO Remove logging through System
+        System.err.println("Texture failed to load!");
+        Game.out.error("Texture failed to load!");
         
         return -1;
     }
