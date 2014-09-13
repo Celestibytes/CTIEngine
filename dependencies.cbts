@@ -2,6 +2,7 @@ guava
 lwjgl
 jinput
 lzma
-celestilib
+celestilib:0.5-SNAPSHOT
 http
 log4j
+#io.github.celestibytes:OGLJGuiSystem:0.1-SNAPSHOT
