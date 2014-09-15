@@ -30,10 +30,14 @@ public class TextureLoader
 {
     public static int loadTexture(String filename)
     {
+    	String fullFilePath = null;
         try
         {
+        	File imgFile = new File(filename);
+        	fullFilePath = imgFile.getAbsolutePath();
+        	
             // The image
-            BufferedImage image = ImageIO.read(new File(filename));
+            BufferedImage image = ImageIO.read(imgFile);
             
             // The image pixel data
             int[] pixels = new int[image.getWidth() * image.getHeight() * 4];
@@ -50,7 +54,7 @@ public class TextureLoader
                 for (int j = 0; j < image.getHeight(); j++)
                 {
                     // Get the pixel from the array
-                    int pixel = pixels[i * j * 4 /* image.getWidth() */];
+                    int pixel = pixels[i * image.getWidth() + j];
                     
                     // Red
                     pixelBuffer.put((byte) ((pixel >> 16) & 255));
@@ -93,9 +97,9 @@ public class TextureLoader
         catch (IOException e)
         {
             e.printStackTrace();
+            Engine.out.error("Failed to load texture from file: " + fullFilePath);
         }
         
-        Engine.out.error("Texture failed to load!");
         
         return -1;
     }

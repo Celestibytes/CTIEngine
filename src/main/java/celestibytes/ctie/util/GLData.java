@@ -22,7 +22,7 @@ public class GLData
     
     public static void loadTextures()
     {
-        textureGuiDecor = TextureLoader.loadTexture("src/main/resources/textures/gui/gui_decoration.png");
+//        textureGuiDecor = TextureLoader.loadTexture("src/main/resources/textures/gui/gui_decoration.png");
     }
     
     public static void unloadAll()

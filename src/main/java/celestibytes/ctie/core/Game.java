@@ -46,6 +46,9 @@ public abstract class Game
     private int windowWidth;
     private int windowHeight;
     
+    // Temporary!
+    private int guiDecorationTexture = -1;
+    
     public Game(String name, int windowWidth, int windowHeight)
     {
         this(name, Engine.DEFAULT_MAX_FPS, windowWidth, windowHeight);
@@ -69,6 +72,8 @@ public abstract class Game
         baseInit();
         
         preLoad();
+        // Temporary, need to wait for the guiDecor texture to be loaded in preLoad()
+        GuiManager.init(this.guiDecorationTexture, windowWidth, windowHeight);
         init();
         
         while (keepRunning())
@@ -115,7 +120,6 @@ public abstract class Game
         {
             DisplayHelper.initGL(name, windowWidth, windowHeight);
             GLData.loadTextures();
-            GuiManager.init(GLData.textureGuiDecor, windowWidth, windowHeight);
             guiManager = new GuiManager();
         }
         catch (LWJGLException e)
@@ -185,11 +189,21 @@ public abstract class Game
         this.windowHeight = windowHeight;
     }
     
+    public int getGuiDecorTex() {
+    	return this.guiDecorationTexture;
+    }
+    
+    public void setGuiDecorTex(int tex) {
+    	if(this.guiDecorationTexture == -1) {
+    		this.guiDecorationTexture = tex;
+    	}
+    }
+    
     protected abstract void preLoad();
     
-    public abstract void init();
+    protected abstract void init();
     
-    public abstract void deInit();
+    protected abstract void deInit();
     
     protected abstract void gameLoop();
 }
