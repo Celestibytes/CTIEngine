@@ -14,6 +14,10 @@
 
 package celestibytes.example.game.launch;
 
+import celestibytes.ctie.core.Engine;
+
+import celestibytes.example.game.ExampleGame;
+
 /**
  * The main launch class of the example game.
  * 
@@ -23,6 +27,11 @@ package celestibytes.example.game.launch;
 public class Launch
 {
     /**
+     * The instance of the game.
+     */
+    public static ExampleGame game = null;
+    
+    /**
      * The main class that the game launches from.
      * 
      * @param args
@@ -30,6 +39,8 @@ public class Launch
      */
     public static void main(String[] args)
     {
-        // TODO Auto-generated method stub
+        game = new ExampleGame();
+        Engine.out.info("Starting the Example Game");
+        game.start();
     }
 }

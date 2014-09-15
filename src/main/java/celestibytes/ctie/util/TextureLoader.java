@@ -63,7 +63,7 @@ public class TextureLoader
                 for (int j = 0; j < image.getHeight(); j++)
                 {
                     // Get the pixel from the array
-                    int pixel = pixels[i * image.getWidth() * j];
+                    int pixel = pixels[i * j * 4 /* image.getWidth() */];
                     
                     // Red
                     pixelBuffer.put((byte) ((pixel >> 16) & 255));

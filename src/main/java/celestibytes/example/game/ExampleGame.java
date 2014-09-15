@@ -30,7 +30,7 @@ public class ExampleGame extends Game
     public ExampleGame()
     {
         // TODO Change these
-        super("Example Game", 500, 500);
+        super("Example Game", 960, 720);
     }
 
     @Override
