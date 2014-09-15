@@ -31,6 +31,11 @@ public final class Engine
     public static final String NAME = "CTIEngine";
     
     /**
+     * The default maximum frames per second of the engine.
+     */
+    public static final int DEFAULT_MAX_FPS = 60;
+    
+    /**
      * The main output logger of the engine.
      */
     public static Logger out = LogManager.getLogger(NAME);

@@ -24,6 +24,15 @@ import celestibytes.ctie.core.Game;
  */
 public class ExampleGame extends Game
 {
+    /**
+     * Constructs a new {@link ExampleGame}.
+     */
+    public ExampleGame()
+    {
+        // TODO Change these
+        super("Example Game", 500, 500);
+    }
+
     @Override
     protected void preLoad()
     {

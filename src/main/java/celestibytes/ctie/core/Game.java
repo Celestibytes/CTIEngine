@@ -99,26 +99,47 @@ public abstract class Game
     private int frameCount = 0;
     
     /**
-     * Starts the game.
+     * 
+     * Constructs a new {@link Game}.
+     * 
+     * @param name
+     *            the name.
+     * @param windowWidth
+     *            the initial window width.
+     * @param windowHeight
+     *            the initial window height.
+     */
+    public Game(String name, int windowWidth, int windowHeight)
+    {
+        this(name, Engine.DEFAULT_MAX_FPS, windowWidth, windowHeight);
+    }
+    
+    /**
+     * 
+     * Constructs a new {@link Game}.
      * 
      * @param name
      *            the name.
      * @param maxFps
      *            the maximum frames per second.
      * @param windowWidth
-     *            the window width.
+     *            the initial window width.
      * @param windowHeight
-     *            the window height.
+     *            the initial window height.
      */
-    public void start(String name, int maxFps, int windowWidth, int windowHeight)
+    public Game(String name, int maxFps, int windowWidth, int windowHeight)
     {
         this.name = name;
-        
         this.fpsLimit = maxFps;
-        
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
-        
+    }
+    
+    /**
+     * Starts the game.
+     */
+    public void start()
+    {
         if (out == null)
         {
             out = LogManager.getLogger(name);
@@ -233,17 +254,18 @@ public abstract class Game
     {
         return delta;
     }
-
+    
     /**
      * Sets the {@code delta} to the given value.
      * 
-     * @param delta the value to set
+     * @param delta
+     *            the value to set
      */
     public void setDelta(float delta)
     {
         this.delta = delta;
     }
-
+    
     /**
      * Gives the {@code fpsLimit}.
      * 
@@ -253,17 +275,18 @@ public abstract class Game
     {
         return fpsLimit;
     }
-
+    
     /**
      * Sets the {@code fpsLimit} to the given value.
      * 
-     * @param fpsLimit the value to set
+     * @param fpsLimit
+     *            the value to set
      */
     public void setFpsLimit(int fpsLimit)
     {
         this.fpsLimit = fpsLimit;
     }
-
+    
     /**
      * Gives the {@code windowWidth}.
      * 
@@ -273,17 +296,18 @@ public abstract class Game
     {
         return windowWidth;
     }
-
+    
     /**
      * Sets the {@code windowWidth} to the given value.
      * 
-     * @param windowWidth the value to set
+     * @param windowWidth
+     *            the value to set
      */
     public void setWindowWidth(int windowWidth)
     {
         this.windowWidth = windowWidth;
     }
-
+    
     /**
      * Gives the {@code windowHeight}.
      * 
@@ -293,17 +317,18 @@ public abstract class Game
     {
         return windowHeight;
     }
-
+    
     /**
      * Sets the {@code windowHeight} to the given value.
      * 
-     * @param windowHeight the value to set
+     * @param windowHeight
+     *            the value to set
      */
     public void setWindowHeight(int windowHeight)
     {
         this.windowHeight = windowHeight;
     }
-
+    
     /**
      * Loads the game textures, configurations and etc.
      */
