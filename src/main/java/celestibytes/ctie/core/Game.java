@@ -41,42 +41,17 @@ public abstract class Game
     /**
      * The {@link GuiManager} of the game.
      */
-    public static GuiManager guiManager = null;
+    public GuiManager guiManager = null;
     
     /**
      * The main output logger of the game.
      */
-    public static Logger out;
+    public Logger out;
     
     /**
-     * The delta value.
+     * The name of the game.
      */
-    private static float delta;
-    
-    /**
-     * The time of the last cycle.
-     */
-    private static long lastCycle = System.currentTimeMillis();
-    
-    /**
-     * If this value is different from {@code 100}, the game will exit.
-     */
-    private static int exitCode = 100;
-    
-    /**
-     * The FPS limit of the game.
-     */
-    private static int fpsLimit = 60;
-    
-    /**
-     * The window width.
-     */
-    private static int windowWidth;
-    
-    /**
-     * The window height.
-     */
-    private static int windowHeight;
+    public String name;
     
     /**
      * The instance of {@link Random} for the game to use.
@@ -84,9 +59,34 @@ public abstract class Game
     protected final Random random = new Random(System.currentTimeMillis());
     
     /**
-     * The name of the game.
+     * The delta value.
      */
-    public String name;
+    private float delta;
+    
+    /**
+     * The time of the last cycle.
+     */
+    private long lastCycle = System.currentTimeMillis();
+    
+    /**
+     * If this value is different from {@code 100}, the game will exit.
+     */
+    private int exitCode = 100;
+    
+    /**
+     * The FPS limit of the game.
+     */
+    private int fpsLimit = 60;
+    
+    /**
+     * The window width.
+     */
+    private int windowWidth;
+    
+    /**
+     * The window height.
+     */
+    private int windowHeight;
     
     /**
      * The time of the last FPS check.
@@ -114,10 +114,10 @@ public abstract class Game
     {
         this.name = name;
         
-        Game.fpsLimit = maxFps;
+        this.fpsLimit = maxFps;
         
-        Game.windowWidth = windowWidth;
-        Game.windowHeight = windowHeight;
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
         
         if (out == null)
         {
@@ -208,9 +208,9 @@ public abstract class Game
      * @param exitCode
      *            the system exit code.
      */
-    public static void scheduleStop(int exitCode)
+    public void scheduleStop(int exitCode)
     {
-        Game.exitCode = exitCode != 100 ? exitCode : -1;
+        this.exitCode = exitCode != 100 ? exitCode : -1;
     }
     
     /**
@@ -229,7 +229,7 @@ public abstract class Game
      * 
      * @return the {@code delta}.
      */
-    public static float getDelta()
+    public float getDelta()
     {
         return delta;
     }
@@ -239,9 +239,9 @@ public abstract class Game
      * 
      * @param delta the value to set
      */
-    public static void setDelta(float delta)
+    public void setDelta(float delta)
     {
-        Game.delta = delta;
+        this.delta = delta;
     }
 
     /**
@@ -249,7 +249,7 @@ public abstract class Game
      * 
      * @return the {@code fpsLimit}.
      */
-    public static int getFpsLimit()
+    public int getFpsLimit()
     {
         return fpsLimit;
     }
@@ -259,9 +259,9 @@ public abstract class Game
      * 
      * @param fpsLimit the value to set
      */
-    public static void setFpsLimit(int fpsLimit)
+    public void setFpsLimit(int fpsLimit)
     {
-        Game.fpsLimit = fpsLimit;
+        this.fpsLimit = fpsLimit;
     }
 
     /**
@@ -269,7 +269,7 @@ public abstract class Game
      * 
      * @return the {@code windowWidth}.
      */
-    public static int getWindowWidth()
+    public int getWindowWidth()
     {
         return windowWidth;
     }
@@ -279,9 +279,9 @@ public abstract class Game
      * 
      * @param windowWidth the value to set
      */
-    public static void setWindowWidth(int windowWidth)
+    public void setWindowWidth(int windowWidth)
     {
-        Game.windowWidth = windowWidth;
+        this.windowWidth = windowWidth;
     }
 
     /**
@@ -289,7 +289,7 @@ public abstract class Game
      * 
      * @return the {@code windowHeight}.
      */
-    public static int getWindowHeight()
+    public int getWindowHeight()
     {
         return windowHeight;
     }
@@ -299,9 +299,9 @@ public abstract class Game
      * 
      * @param windowHeight the value to set
      */
-    public static void setWindowHeight(int windowHeight)
+    public void setWindowHeight(int windowHeight)
     {
-        Game.windowHeight = windowHeight;
+        this.windowHeight = windowHeight;
     }
 
     /**
