@@ -40,6 +40,10 @@ apply plugin: 'celestibytes'
 group 'io.github.celestibytes'
 archivesBaseName = project.getName()
 
+tasks.withType(JavaCompile) {
+	options.incremental = true
+}
+
 signing {
     required {gradle.taskGraph.hasTask("release")}
     sign configurations.archives
