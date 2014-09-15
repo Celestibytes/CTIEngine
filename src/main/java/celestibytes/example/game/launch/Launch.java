@@ -18,25 +18,10 @@ import celestibytes.ctie.core.Engine;
 
 import celestibytes.example.game.ExampleGame;
 
-/**
- * The main launch class of the example game.
- * 
- * @author PizzAna
- *
- */
 public class Launch
 {
-    /**
-     * The instance of the game.
-     */
     public static ExampleGame game = null;
     
-    /**
-     * The main class that the game launches from.
-     * 
-     * @param args
-     *            the program arguments.
-     */
     public static void main(String[] args)
     {
         game = new ExampleGame();

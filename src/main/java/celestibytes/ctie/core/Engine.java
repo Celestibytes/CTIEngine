@@ -17,26 +17,9 @@ package celestibytes.ctie.core;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- * Contains all engine only related constants, fields, methods, etc.
- * 
- * @author PizzAna
- *
- */
 public final class Engine
 {
-    /**
-     * The name constant of the engine.
-     */
     public static final String NAME = "CTIEngine";
-    
-    /**
-     * The default maximum frames per second of the engine.
-     */
     public static final int DEFAULT_MAX_FPS = 60;
-    
-    /**
-     * The main output logger of the engine.
-     */
     public static Logger out = LogManager.getLogger(NAME);
 }

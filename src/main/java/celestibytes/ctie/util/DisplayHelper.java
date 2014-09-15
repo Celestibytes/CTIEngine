@@ -14,58 +14,19 @@
 
 package celestibytes.ctie.util;
 
-import celestibytes.ctie.core.Game;
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
-/**
- * Handles and initializes the game {@link Display}.
- * <p/>
- * When a new {@link Display} is created,
- * {@link DisplayHelper#initGL(String, int, int)} should be called.
- * <p/>
- * When the {@link Display} is closed, {@link DisplayHelper#destroyGL()} should
- * be called.
- * <p/>
- * When the {@link Display} is resized, {@link DisplayHelper#onResize()} should
- * be called.
- * 
- * @author PizzAna
- * @see Display
- * @see Game
- */
 public class DisplayHelper
 {
-    /**
-     * Tells if the initialization has already run.
-     */
     private static boolean init = false;
     
-    /**
-     * The window width.
-     */
     private static int windowWidth;
     
-    /**
-     * The window height.
-     */
     private static int windowHeight;
     
-    /**
-     * Initializes the {@link Display}.
-     * 
-     * @param name
-     *            the name.
-     * @param windowWidth
-     *            the window width.
-     * @param windowHeight
-     *            the window height.
-     * @throws LWJGLException
-     *             if the initialization fails.
-     */
     public static void initGL(String name, int windowWidth, int windowHeight) throws LWJGLException
     {
         if (init)
@@ -90,59 +51,31 @@ public class DisplayHelper
         GL11.glLoadIdentity();
     }
     
-    /**
-     * Destroys the {@link Display}.
-     */
     public static void destroyGL()
     {
         Display.destroy();
     }
     
-    /**
-     * Called when the {@link Display} is resized.
-     */
     public static void onResize()
     {
         // TODO
     }
     
-    /**
-     * Gives the {@code windowWidth}.
-     * 
-     * @return the {@code windowWidth}.
-     */
     public static int getWindowWidth()
     {
         return windowWidth;
     }
     
-    /**
-     * Sets the {@code windowWidth} to the given value.
-     * 
-     * @param windowWidth
-     *            the value to set
-     */
     public static void setWindowWidth(int windowWidth)
     {
         DisplayHelper.windowWidth = windowWidth;
     }
     
-    /**
-     * Gives the {@code windowHeight}.
-     * 
-     * @return the {@code windowHeight}.
-     */
     public static int getWindowHeight()
     {
         return windowHeight;
     }
     
-    /**
-     * Sets the {@code windowHeight} to the given value.
-     * 
-     * @param windowHeight
-     *            the value to set
-     */
     public static void setWindowHeight(int windowHeight)
     {
         DisplayHelper.windowHeight = windowHeight;

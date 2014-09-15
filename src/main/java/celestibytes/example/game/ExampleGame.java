@@ -16,17 +16,8 @@ package celestibytes.example.game;
 
 import celestibytes.ctie.core.Game;
 
-/**
- * The example and testing game for CTIEngine.
- * 
- * @author PizzAna
- *
- */
 public class ExampleGame extends Game
 {
-    /**
-     * Constructs a new {@link ExampleGame}.
-     */
     public ExampleGame()
     {
         // TODO Change these

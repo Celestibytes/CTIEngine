@@ -14,35 +14,17 @@
 
 package celestibytes.ctie.util;
 
-import celestibytes.ctie.core.Game;
-
 import org.lwjgl.opengl.GL11;
 
-/**
- * Loads all engine textures during the game load.
- * 
- * @author PizzAna
- * @see TextureLoader
- * @see Game
- */
 public class GLData
 {
-    /**
-     * GUI decoration texture id.
-     */
     public static int textureGuiDecor = -1;
     
-    /**
-     * Loads all engine textures.
-     */
     public static void loadTextures()
     {
         textureGuiDecor = TextureLoader.loadTexture("src/main/resources/textures/gui/gui_decoration.png");
     }
     
-    /**
-     * Unloads all engine textures.
-     */
     public static void unloadAll()
     {
         if (textureGuiDecor != -1)

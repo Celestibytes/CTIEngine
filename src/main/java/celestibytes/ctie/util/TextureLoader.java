@@ -26,21 +26,8 @@ import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
 
-/**
- * Loads texture files.
- * 
- * @author PizzAna
- *
- */
 public class TextureLoader
 {
-    /**
-     * Loads a texture.
-     * 
-     * @param filename
-     *            the relative path of the texture file.
-     * @return the texture id or {@code -1} if the texture failed to load.
-     */
     public static int loadTexture(String filename)
     {
         try
