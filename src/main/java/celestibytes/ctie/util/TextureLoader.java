@@ -49,9 +49,9 @@ public class TextureLoader
             ByteBuffer pixelBuffer = BufferUtils.createByteBuffer(image.getWidth() * image.getHeight() * 4);
             
             // Put pixel data into the buffer
-            for (int i = 0; i < image.getWidth(); i++)
+            for (int i = 0; i < image.getHeight(); i++)
             {
-                for (int j = 0; j < image.getHeight(); j++)
+                for (int j = 0; j < image.getWidth(); j++)
                 {
                     // Get the pixel from the array
                     int pixel = pixels[i * image.getWidth() + j];

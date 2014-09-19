@@ -14,9 +14,10 @@
 
 package celestibytes.ctie.core;
 
+import celestibytes.ctie.input.BasicGameInput;
 import celestibytes.ctie.util.GLData;
 import celestibytes.ctie.util.DisplayHelper;
-
+import okkapel.kkplglutil.util.KeyBindHandler;
 import okkapel.ogljguisystem.GuiManager;
 import okkapel.ogljguisystem.util.MouseHelper;
 
@@ -88,6 +89,9 @@ public abstract class Game
             MouseHelper.update();
             guiManager.mouseUpdate();
             
+            BasicGameInput.clearInput();
+            KeyBindHandler.updateKBs();
+            
             gameLoop();
             
             int errorCode = GL11.glGetError();
@@ -111,6 +115,7 @@ public abstract class Game
         }
         
         GLData.unloadAll();
+        KeyBindHandler.deleteKeyBinds();
         DisplayHelper.destroyGL();
     }
     
