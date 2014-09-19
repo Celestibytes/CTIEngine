@@ -8,19 +8,20 @@ public class EntityPlayer extends EntityLiving {
 	public void positionUpdate(float delta) {
 		movingx = true;
 		movingy = true;
+		float plrSpd = 400f; 
 		
 		if(BasicGameInput.getPlayerMovingX() == Direction.LEFT) {
-			targetdx = -100f;
+			targetdx = -plrSpd;
 		} else if(BasicGameInput.getPlayerMovingX() == Direction.RIGHT) {
-			targetdx = 100f;
+			targetdx = plrSpd;
 		} else {
 			movingx = false;
 		}
 		
 		if(BasicGameInput.getPlayerMovingY() == Direction.UP) {
-			targetdy = -100f;
+			targetdy = -plrSpd;
 		} else if(BasicGameInput.getPlayerMovingY() == Direction.DOWN) {
-			targetdy = 100f;
+			targetdy = plrSpd;
 		} else {
 			movingy = false;
 		}
