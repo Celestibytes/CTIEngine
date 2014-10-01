@@ -1,7 +1,8 @@
 package celestibytes.ctie.input;
 
 import celestibytes.ctie.util.Direction;
-import celestibytes.ctie.util.Tuple;
+
+import celestibytes.lib.Tuple;
 
 public class BasicGameInput {
 	
