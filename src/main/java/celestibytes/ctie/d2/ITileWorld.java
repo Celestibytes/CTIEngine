@@ -4,4 +4,6 @@ public interface ITileWorld {
 	public void getTileAt(int x, int y);
 	
 	public void setTileAt(int x, int y, int tile);
+	
+	public boolean isTileSolidAt(int x, int y);
 }

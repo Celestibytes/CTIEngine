@@ -106,7 +106,7 @@ public abstract class Game
             if ((System.currentTimeMillis() - fpsCheckLast) > 1000)
             {
 //                out.debug("FPS: " + frameCount + ", Logic time: " + (System.currentTimeMillis() - lastCycle) + "ms");
-                System.out.println("FPS: " + frameCount + ", Logic time: " + (System.currentTimeMillis() - lastCycle) + "ms");
+                System.out.println("FPS: " + frameCount + ", Logic time: " + (System.currentTimeMillis() - lastCycle) + "ms" + ", delta: " + getDelta());
                 frameCount = 0;
                 fpsCheckLast = System.currentTimeMillis();
             }

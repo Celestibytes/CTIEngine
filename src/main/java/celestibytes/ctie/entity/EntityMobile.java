@@ -1,23 +1,27 @@
 package celestibytes.ctie.entity;
 
 import celestibytes.ctie.platformer.Force;
+import celestibytes.ctie.util.TWCollPool;
 import celestibytes.lib.math.MathHelper;
 
 public abstract class EntityMobile extends EntityBase {
 	
-	float dx, dy, airResistance, targetdx, targetdy;
+	float dx, dy, airResistance, friction, targetdx, targetdy;
 	boolean movingx, movingy, movingz;
-	float gravity = 200f;
+	float gravity = 1000f;
 	
 //	private static Force gravity = new Force();
 	
 	public EntityMobile() {
-		airResistance = 8f;
+		
 	}
 	
-	private void velocitySlide() {
-		System.out.println("Y: " + this.y);
-		float amnt = movingx ? airResistance*2 : airResistance;
+	private void velocitySlide(float delta) {
+		airResistance = 120f*delta;
+		friction = 50f*delta;
+		gravity = 40f;
+//		float amnt = movingx ? airResistance*2 : airResistance;
+		float amnt = movingx ? friction*2 : friction;
 		if(!movingx) {
 			targetdx = 0f;
 		}
@@ -42,13 +46,14 @@ public abstract class EntityMobile extends EntityBase {
 	}
 	
 	public boolean isOnGround() {
-		return (this.y >= 400);
+		return (this.y >= 0);
 	}
 	
 	public void positionUpdate(float delta) {
-		velocitySlide();
+		velocitySlide(delta);
 		this.x += dx*delta;
-		this.y += dy*delta;
+		this.y += TWCollPool.moveY(dy*delta, this.x, this.y, 1f);
+//		System.out.println("X: " + this.x + " Y: " + this.y + " DX: " + this.dx + " DY: " + this.dy);
 	}
 	
 	public void applyForce(Force f) {
@@ -72,6 +77,14 @@ public abstract class EntityMobile extends EntityBase {
 	public void applyForce(float dx, float dy) {
 		this.dx += dx;
 		this.dy += dy;
+	}
+	
+	public float getDX() {
+		return this.dx;
+	}
+	
+	public float getDY() {
+		return this.dy;
 	}
 	
 //	public static void setGravity(Force f) {

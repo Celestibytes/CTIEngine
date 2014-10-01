@@ -10,4 +10,8 @@ public class Tile {
 	public static final Colour LAVA = new Colour(1f,.3f,.3f);
 	
 	public static final Colour[] BLOCKCLR = new Colour[] {STONE, GRASS, SAND, WATER, LAVA};
+	
+	public static boolean isCollidable(int id) {
+		return id == 1 || id == 2 || id == 3 ? false : true;
+	}
 }
