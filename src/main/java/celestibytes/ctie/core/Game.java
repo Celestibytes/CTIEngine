@@ -115,6 +115,7 @@ public abstract class Game
             Display.sync(fpsLimit);
         }
         
+        deInit();
         GLData.unloadAll();
         KeyBindHandler.deleteKeyBinds();
         DisplayHelper.destroyGL();
