@@ -18,6 +18,7 @@ import celestibytes.ctie.input.BasicGameInput;
 import celestibytes.ctie.util.GLData;
 import celestibytes.ctie.util.DisplayHelper;
 import okkapel.kkplglutil.util.KeyBindHandler;
+import okkapel.kkplglutil.util.Texture;
 import okkapel.ogljguisystem.GuiManager;
 import okkapel.ogljguisystem.util.MouseHelper;
 
@@ -48,7 +49,7 @@ public abstract class Game
     private int windowHeight;
     
     // Temporary!
-    private int guiDecorationTexture = -1;
+    private Texture guiDecorationTexture = null;
     
     public Game(String name, int windowWidth, int windowHeight)
     {
@@ -87,7 +88,7 @@ public abstract class Game
             calculateDelta();
             
             MouseHelper.update();
-            guiManager.mouseUpdate();
+//            guiManager.mouseUpdate();
             
             BasicGameInput.clearInput();
             KeyBindHandler.updateKBs();
@@ -196,12 +197,12 @@ public abstract class Game
         this.windowHeight = windowHeight;
     }
     
-    public int getGuiDecorTex() {
+    public Texture getGuiDecorTex() {
     	return this.guiDecorationTexture;
     }
     
-    public void setGuiDecorTex(int tex) {
-    	if(this.guiDecorationTexture == -1) {
+    public void setGuiDecorTex(Texture tex) {
+    	if(this.guiDecorationTexture == null) {
     		this.guiDecorationTexture = tex;
     	}
     }
